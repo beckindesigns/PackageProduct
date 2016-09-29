@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+namespace Beckin\PackageProduct\Model\Product\Link\ProductEntity;
+
+use Magento\Catalog\Model\ProductLink\Converter\ConverterInterface;
+
+class Converter implements ConverterInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function convert(\Magento\Catalog\Model\Product $product)
+    {
+        //Confirmed Values
+        return [
+            'type' => $product->getTypeId(),
+            'sku' => $product->getSku(),
+            'position' => $product->getPosition(),
+            'custom_attributes' => [
+                ['attribute_code' => 'qty', 'value' => $product->getQty()],
+                ['attribute_code' => 'assignedprice', 'value' => $product->getAssignedprice()],
+            ]
+        ];
+    }
+}

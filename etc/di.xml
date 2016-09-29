@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product\LinkTypeProvider">
+        <arguments>
+            <argument name="linkTypes" xsi:type="array">
+                <item name="associated" xsi:type="const">Beckin\PackageProduct\Model\ResourceModel\Product\Link::LINK_TYPE_PACKAGE</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type">
+        <plugin name="package_output" type="Beckin\PackageProduct\Model\Product\Type\Plugin" />
+    </type>
+    <type name="Magento\Catalog\Model\ProductLink\CollectionProvider">
+        <arguments>
+            <argument name="providers" xsi:type="array">
+                <item name="associated" xsi:type="object">Beckin\PackageProduct\Model\Product\Link\CollectionProvider\Package</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Initialization\Helper\ProductLinks">
+        <plugin name="PackageProduct" type="Beckin\PackageProduct\Model\Product\Initialization\Helper\ProductLinks\Plugin\Package" />
+    </type>
+    <type name="\Magento\Catalog\Model\ResourceModel\Product\Link">
+        <plugin name="packageProductLinkProcessor" type="Beckin\PackageProduct\Model\ResourceModel\Product\Link\RelationPersister" />
+    </type>
+    <type name="Magento\Catalog\Model\ProductLink\Converter\ConverterPool">
+        <arguments>
+            <argument name="converters" xsi:type="array">
+                <item name="associated" xsi:type="object">\Beckin\PackageProduct\Model\Product\Link\ProductEntity\Converter</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

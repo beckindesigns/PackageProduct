@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Catalog/etc/product_types.xsd">
+    <type name="package" label="Package Product" modelInstance="Beckin\PackageProduct\Model\Product\Type\Package" composite='true' indexPriority="25" sortOrder="25">
+        <priceModel instance="Beckin\PackageProduct\Model\Product\Type\Package\Price" />
+        <customAttributes>
+            <attribute name="is_real_product" value="false"/>
+            <attribute name="refundable" value="true"/>
+            <attribute name="taxable" value="true"/>
+            <attribute name="is_product_set" value="true"/>
+        </customAttributes>
+    </type>
+</config>
